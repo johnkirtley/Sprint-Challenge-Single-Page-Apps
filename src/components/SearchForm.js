@@ -35,8 +35,12 @@ align-items: center;
 margin-top: 5%;
 `
 
-const Name = styled.h2`
-text-align: center;
+const Attr = styled.span`
+color: white;
+`
+
+const StyledImg = styled.img`
+width: 85%;
 `
 
 const SearchForm = () => {
@@ -62,6 +66,7 @@ const SearchForm = () => {
       })
   }, [query])
 
+
   const handleChanges = (e) => {
     setQuery(e.target.value);
   }
@@ -80,9 +85,31 @@ const SearchForm = () => {
           return (
             <>
               <Card key={character.id}>
-                <Name>Name: {character.name}</Name>
-                <h3>Status: {character.status}</h3>
-                <h3>Species: {character.species}</h3>
+                <StyledImg src={character.image} alt="" />
+                <h2>
+                  <div>
+                    <Attr>Name:</Attr>
+                  </div>
+                  <div>
+                    {character.name}
+                  </div>
+                </h2>
+                <h2>
+                  <div>
+                    <Attr>Status:</Attr>
+                  </div>
+                  <div>
+                    {character.status}
+                  </div>
+                </h2>
+                <h2>
+                  <div>
+                    <Attr>Species:</Attr>
+                  </div>
+                  <div>
+                    {character.species}
+                  </div>
+                </h2>
               </Card>
             </>
           )

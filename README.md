@@ -27,7 +27,8 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ]  Explain benefit(s) using `client-side routing`?
 
-> Answer:
+> Answer: Client side routing is similar to server side routing, but it's ran within the browser. Routing is handled internally by the JavaScript that is loaded on the page.
+>          When a link is clicked, the URL will change, but the request to the server is prevented.
 
 ## Project Set Up
 
