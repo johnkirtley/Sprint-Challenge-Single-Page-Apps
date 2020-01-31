@@ -54,11 +54,6 @@ const SearchForm = () => {
         const searchResults = res.data.results.filter(character =>
           character.name.toLowerCase().includes(query.toLowerCase())
         );
-
-        if (searchResults.length === 0) {
-          console.log("No matches")
-        }
-
         setCharacters(searchResults);
       })
       .catch(err => {

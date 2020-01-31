@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { TweenMax } from "gsap";
+import { TweenMax, Linear } from "gsap";
 
 const StyledLink = styled(Link)`
 text-decoration: none;
@@ -16,27 +16,35 @@ const MainImage = styled.img`
 margin-top: 5%;
 `
 
-
-
 export default function WelcomePage() {
 
-  // const imgAnimation = useRef(null);
+  let mainImage = useRef(null);
 
-  // useEffect(() => {
-  //   TweenMax.fromTo(
-  //     imgAnimation,
-  //     0.5,
-  //     { y: 18 },
-  //     { y: -18, yoyo: true, repeat: -1 }
-  //   );
-  //   TweenMax.fromTo(
-  //     imgAnimation,
-  //     0.5,
-  //     { y: -18 },
-  //     { y: 18, repeat: -1, yoyo: true }
-  //   );
-  // }, []);
+  useEffect(() => {
+    TweenMax.to(
+      mainImage,
+      1,
+      {
+        repeat: -1,
+        rotation: 360,
+        ease: Linear.easeNone
+      }
+    )
+  }, [])
 
+
+  function scaleDown() {
+    TweenMax.to(mainImage, 1, {
+      scale: 0.75
+    });
+  }
+
+  function scaleUp() {
+    TweenMax.to(mainImage, 1, {
+      scale: 2.0,
+      ease: Linear.ease
+    });
+  }
 
 
 
@@ -48,11 +56,13 @@ export default function WelcomePage() {
           <StyledLink to="/charactercard">Character Cards</StyledLink>
         </div>
         <MainImage
-          // ref={imgAnimation}
+          ref={element => { mainImage = element }}
           className="main-img"
           id="main-img"
           src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
           alt="rick"
+          onMouseEnter={scaleUp}
+          onMouseLeave={scaleDown}
         />
       </header>
     </section>
