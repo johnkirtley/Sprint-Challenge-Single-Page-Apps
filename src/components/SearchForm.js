@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import { TweenMax, Linear, gsap } from "gsap";
 
 const Card = styled.div`
 display: flex;
@@ -15,9 +16,6 @@ background-color: #9AC4F8;
 border-radius: 10px;
 box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 
-&:hover {
-  transform: scale(1.05);
-  transition: 0.2s ease-in;
 }
 `
 
@@ -66,6 +64,31 @@ const SearchForm = () => {
     setQuery(e.target.value);
   }
 
+  let cards = useRef(null);
+
+  useEffect(() => {
+    gsap.to(".cards",
+      {
+        duration: 4,
+        ease: Linear.easeIn
+      })
+  })
+
+  function disperseCards() {
+    gsap.to(".cards",
+      {
+        x: "random(1300, -1150, 1)",
+        y: "random(-1300, 1400, 1)",
+        duration: 4,
+        repeat: -1,
+        yoyoEase: true,
+        ease: Linear.easeOut
+
+      })
+  }
+
+
+
 
   return (
     <>
@@ -79,7 +102,7 @@ const SearchForm = () => {
         {characters.map(character => {
           return (
             <>
-              <Card key={character.id}>
+              <Card key={character.id} className="cards" ref={element => { cards = element }} onClick={disperseCards}>
                 <StyledImg src={character.image} alt="" />
                 <h2>
                   <div>
