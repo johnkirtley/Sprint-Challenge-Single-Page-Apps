@@ -3,11 +3,15 @@ import Header from "./components/Header.js";
 import CharacterCard from "./components/CharacterCard";
 import WelcomePage from "./components/WelcomePage";
 import { Route } from 'react-router-dom';
+import styled from "styled-components";
 
+const Main = styled.main`
+text-align: center;
+`
 
 export default function App() {
   return (
-    <main>
+    <Main>
       <Header />
       <Route exact path="/">
         <WelcomePage />
@@ -15,6 +19,6 @@ export default function App() {
       <Route path="/charactercard">
         <CharacterCard />
       </Route>
-    </main>
+    </Main>
   );
 }

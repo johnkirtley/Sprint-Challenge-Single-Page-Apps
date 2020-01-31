@@ -1,5 +1,43 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import styled from "styled-components";
+
+const Card = styled.div`
+display: flex;
+flex-flow: column;
+justify-content: center;
+align-items: center;
+border: 2px solid black;
+width: 85%;
+padding: 5% 0;
+margin: 5% auto;
+background-color: #9AC4F8;
+border-radius: 10px;
+box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+
+&:hover {
+  transform: scale(1.05);
+  transition: 0.2s ease-in;
+}
+`
+
+const Grid = styled.section`
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+margin-top: 5%;
+`
+
+const FormContainer = styled.div`
+display: flex;
+flex-flow: column;
+justify-content: center;
+align-items: center;
+margin-top: 5%;
+`
+
+const Name = styled.h2`
+text-align: center;
+`
 
 const SearchForm = () => {
   const [query, setQuery] = useState('');
@@ -26,21 +64,27 @@ const SearchForm = () => {
 
 
   return (
-    <section className="search-form">
+    <>
       <form>
-        <label>Search Character Name</label>
-        <input type="text" onChange={handleChanges} value={query} />
+        <FormContainer>
+          <label>Search Character Name</label>
+          <input type="text" onChange={handleChanges} value={query} />
+        </FormContainer>
       </form>
-      {characters.map(character => {
-        return (
-          <div key={character.id}>
-            <h2>{character.name}</h2>
-            <h3>{character.status}</h3>
-            <h3>{character.species}</h3>
-          </div>
-        )
-      })}
-    </section>
+      <Grid>
+        {characters.map(character => {
+          return (
+            <>
+              <Card key={character.id}>
+                <Name>Name: {character.name}</Name>
+                <h3>Status: {character.status}</h3>
+                <h3>Species: {character.species}</h3>
+              </Card>
+            </>
+          )
+        })}
+      </Grid>
+    </>
   );
 }
 

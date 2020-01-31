@@ -1,14 +1,18 @@
 import React from "react";
-import CharacterList from "./CharacterList";
+import SearchForm from "./SearchForm";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const StyledLink = styled(Link)`
+text-decoration: none;
+`
 
 const CharacterCard = () => {
 
-
   return (
     <div>
-      <Link to="/">Home</Link>
-      <CharacterList />
+      <StyledLink to="/">Home</StyledLink>
+      <SearchForm />
     </div>
   )
 }
