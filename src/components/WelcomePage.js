@@ -25,8 +25,8 @@ export default function WelcomePage() {
       mainImage,
       1,
       {
-        repeat: -1,
-        rotation: 360,
+        repeat: 0,
+        rotation: 0,
         ease: Linear.easeNone
       }
     )
@@ -35,14 +35,19 @@ export default function WelcomePage() {
 
   function scaleDown() {
     TweenMax.to(mainImage, 1, {
-      scale: 0.75
+      scale: 0.75,
+      repeat: 0,
+      yoyo: false
     });
   }
 
   function scaleUp() {
     TweenMax.to(mainImage, 1, {
       scale: 2.0,
-      ease: Linear.ease
+      ease: Linear.ease,
+      rotation: 360,
+      yoyo: true,
+      repeat: 1
     });
   }
 
